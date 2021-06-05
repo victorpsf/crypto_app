@@ -131,6 +131,7 @@ export default class Ipc {
       let { resolve, reject } = this.getRequest(pid)
 
       try {
+        this.unsetRequest(pid)
         if (status === 'error') throw args.response
         return resolve({ pid, ...args.response })
       } catch (error) { return reject({ pid, ...error }) }
