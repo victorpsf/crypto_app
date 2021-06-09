@@ -57,6 +57,7 @@
                 <div 
                   class="modal-content-body-input-body-arrow" 
                   @click="(event) => scrollTo(event, 'up', key)"
+                  @wheel.prevent="(event) => scrollTo(event, 'up-wheel', key)"
                 >
                   <div class="arrow-up b5"></div>
                 </div>
@@ -72,6 +73,7 @@
                 <div
                   class="modal-content-body-input-body-arrow"
                   @click="(event) => scrollTo(event, 'down', key)"
+                  @wheel.prevent="(event) => scrollTo(event, 'down-wheel', key)"
                 >
                   <div class="arrow-down b5"></div>
                 </div>
@@ -80,6 +82,11 @@
           </div>
 
           <div class="modal-content-footer">
+            <button 
+              v-for="(button, index) in __labels__.buttons"
+              :key="index"
+              @click="picker"
+            >{{ button }}</button>
           </div>
         </div>
       </div>

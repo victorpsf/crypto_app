@@ -27,6 +27,10 @@ export default {
         value: null
       },
 
+      __labels__: {
+        buttons: ['Cancel', 'Ok']
+      },
+
       // picker value
       __input__: {
         hour: {
@@ -107,8 +111,13 @@ export default {
     /**
      * 
      */
-    getClass() {
+    getClass(inputType, value) {
+      let classNames = ['value']
 
+      if ("number" !== typeof value) return classNames
+      console.log(value, this[`__input_${inputType}__`])
+      if (value === this[`__input_${inputType}__`]) classNames.push('selected')
+      return classNames
     },
 
     setAttr() {
@@ -132,9 +141,20 @@ export default {
       this.format(time, 'time')
     },
 
-    __input_hour__() { return this.__input__.hour.value },
-    __input_minute__() { return this.__input__.minute.value },
-    __input_second__() { return this.__input__.second.value },
+    __input_hour__: { 
+      get()      { return this.__input__.hour.value },
+      set(value) { this.__input__.hour.value = value }
+    },
+
+    __input_minute__: {
+      get()      { return this.__input__.minute.value },
+      set(value) { this.__input__.minute.value = value }
+    },
+
+    __input_second__: {
+      get()      { return this.__input__.second.value },
+      set(value) { this.__input__.second.value = value }
+    },
 
     __time_picker__() {
       let attrs = ['__input_hour__', '__input_minute__', '__input_second__']
@@ -145,7 +165,6 @@ export default {
         attrs[index] = `000${this[attr]}`.slice(-2)
       }
 
-      console.log(attrs.join(':'))
       return attrs.join(':')
     }
   }
