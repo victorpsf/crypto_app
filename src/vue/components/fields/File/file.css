@@ -1,0 +1,64 @@
+@import "../../mixins/css/basefield.css";
+
+.input-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} .input-field > .input {
+  width: calc(100% - 20px);
+  height: 40px;
+  background-color: #ecf0f1;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+} .input-field > .input > .files {
+  width: calc(100% - 25px);
+  height: 35px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+} .input-field > .input > .files > .file {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bdc3c7;
+  color: #ffffff;
+  height: 32px;
+  border-radius: 5px;
+  margin-right: 5px;
+} .input-field > .input > .files > .file > .info {
+  margin: 0px 5px;
+} .input-field > .input > .files > .file > .name {
+  margin: 0px 10px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  cursor: default;
+} .input-field > .input > .files > .file > .info > .size {
+  font-size: 8px;
+  cursor: default;
+} .input-field > .input > .files > .file > .percent {
+  margin: 0px 5px;
+} .input-field > .input > .files > .file > .close {
+  height: 10px;
+  margin: 0px 10px;
+  cursor: pointer;
+  filter: invert(100%) sepia(79%) saturate(100%) hue-rotate(86deg) brightness(118%) contrast(119%);
+} .input-field > .input > .files > .file > .close:hover {
+  height: 10px;
+  filter: invert(100%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+} .input-field > .input > .upload {
+  background-color: #ecf0f1;
+  width: 25px;
+  height: 15px;
+  cursor: pointer;
+} .input-field > .input > .upload:hover {
+  opacity: 0.6;
+} .input-field > .input > .upload.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

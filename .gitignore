@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+.bkp/
+
 
 # local env files
 .env.local
