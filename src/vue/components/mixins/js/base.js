@@ -2,8 +2,7 @@ export default {
   created() {
     let rules = [
       { func: 'load', call: 'load' },
-      { func: 'set', call: 'set' },
-      { func: '__getter__', call: '__getter__' }
+      { func: 'set', call: 'set' }
     ]
 
     this.init(rules)

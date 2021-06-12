@@ -18,17 +18,26 @@ export default {
         }
       },
       components: [
-        { name: 'select-field',  label: 'Algoritmo', value: 1,    shared: { options: { 1: 'teste', 2: 'testando muito grande o teste'  } } },
-        { name: 'file-field',    label: 'Arquivo', value: null, shared: {  } },
-        { name: 'text-field',    label: 'Nome', value: null, shared: {  } },
-        { name: 'numeric-field', label: 'Idade', value: null, shared: {  } },
+        { name: 'text-field',    label: 'Nome', field: 'name', value: null, shared: { type: 'password' } },
+        { name: 'time-field',    label: 'Hora de Nascimento', value: '04:00:00', shared: {  } },
+        // { name: 'select-field',  label: 'Algoritmo', value: 1,    shared: { options: { 1: 'teste', 2: 'testando muito grande o teste'  } } },
+        // { name: 'file-field',    label: 'Arquivo', value: null, shared: {  } },
+        // { name: 'numeric-field', label: 'Idade', value: null, shared: {  } },
         // { name: 'date-field',    label: 'Data Nascimento', value: null, shared: {  } },
-        { name: 'time-field',    label: 'Hora de Nascimento', value: null, shared: {  } },
+        // { name: 'input-field',   label: 'Input Field', value: '04:00:00', shared: {  } },
       ]
     }
   },
 
   methods: {
+
+    click(event) {
+      console.log(event, this.components)
+    },
+
+    fieldName(component) {
+      return component.field
+    },
 
     getClass({ value, index }) {
       if (this.props.selected.value === null) return ""

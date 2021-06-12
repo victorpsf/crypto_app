@@ -5,25 +5,30 @@
     </div>
 
     <div class="input-field" v-if="mode == 'form'">
-      <div class="text-picker">
-        <div>
+      <div class="input-field-text">
+        <div :class="(__password__)? 'input-field-text-picker': ['input-field-text-picker', 'full']">
           <input 
-            v-this="(el) => setElement(el, 'input')"
-            :type="type"
-            v-model="input.value"
+            class="input-field-text-input"
+            v-this:input="setElement"
+            @input="changedValue"
+            :type="__type__"
+            :value="modelValue"
           >
         </div>
-        <div v-if="password">
+        <div class="input-field-text-img" v-if="__password__">
           <img
-            v-if="input.visible"
+            class="input-field-text-option"
+            v-if="!__getter__('visible')"
             @click="passwordVisibleChange"
-            :src="$$.db.base64.value.visible.src"
-            :alt="$$.db.base64.value.visible.name"
+            :src="__ico__.visible.src"
+            :alt="__ico__.visible.name"
           >
           <img
+            class="input-field-text-option"
             v-else
             @click="passwordVisibleChange"
-            :src="$$.db.base64.value.invisible.src"
+            :src="__ico__.invisible.src"
+            :alt="__ico__.invisible.name"
           >
         </div>
       </div>

@@ -10,10 +10,6 @@ export default Object.assign({
     label: {
       type: String,
       required: true,
-    },
-    getter: {
-      type: Function,
-      required: true
     }
   },
   data() {

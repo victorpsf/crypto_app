@@ -14,11 +14,11 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 1070,
-    height: 720,
+    width: 1024,
+    height: 768,
 
-    minWidth: 900,
-    minHeight: 700,
+    minWidth: 512,
+    minHeight: 384,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info

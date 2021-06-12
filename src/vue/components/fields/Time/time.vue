@@ -15,8 +15,7 @@
       <div
         class="time-picker"
         @click="(event) => picker(event)"
-      >
-        <div>{{ __time__ }}</div>
+      > <div>{{ __time__ }}</div>
         <div>
           <img 
             @click="timeClick"
@@ -57,12 +56,14 @@
                 <div 
                   class="modal-content-body-input-body-arrow" 
                   @click="(event) => scrollTo(event, 'up', key)"
-                  @wheel.prevent="(event) => scrollTo(event, 'up-wheel', key)"
+                  @wheel="(event) => scrollTo(event, 'up-wheel', key)"
                 >
                   <div class="arrow-up b5"></div>
                 </div>
-                <div class="modal-content-body-input-body-scroll">
-                  <div 
+                <div 
+                  class="modal-content-body-input-body-scroll" 
+                  v-this:[key]="setElement"
+                > <div 
                     v-for="(option, index) in constant.options"
                     :key="`${key}:${index}`"
                     :class="getClass(key, option)"
@@ -73,7 +74,7 @@
                 <div
                   class="modal-content-body-input-body-arrow"
                   @click="(event) => scrollTo(event, 'down', key)"
-                  @wheel.prevent="(event) => scrollTo(event, 'down-wheel', key)"
+                  @wheel="(event) => scrollTo(event, 'down-wheel', key)"
                 >
                   <div class="arrow-down b5"></div>
                 </div>
@@ -85,7 +86,7 @@
             <button 
               v-for="(button, index) in __labels__.buttons"
               :key="index"
-              @click="picker"
+              @click="(event) => pickerTimeController(event, button)"
             >{{ button }}</button>
           </div>
         </div>

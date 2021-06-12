@@ -60,7 +60,7 @@
 .input-field > .modal-picker > .modal-content-picker {
   background-color: rgba(255, 255, 255, 1);
   width: 330px;
-  height: 290px;
+  height: 305px;
 
   border-radius: var(--app-border);
 }
@@ -142,11 +142,10 @@
 }
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll {
   width: 100%;
-  height: calc(100% - 40px);
+  height: 60px;
   overflow: hidden;
 }
-
-.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > div {
+.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value {
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -154,4 +153,35 @@
   padding: 5px;
   text-align: center;
   border-radius: var(--app-border);
+}
+.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number {
+  cursor: pointer;
+}
+.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number.selected {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.input-field > .modal-picker > .modal-content-picker > .modal-content-footer {
+  height: 50px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.input-field > .modal-picker > .modal-content-picker > .modal-content-footer > button {
+  cursor: pointer;
+  border: none;
+  background-color: #ffffff;
+  color: #3498db;
+  padding: 10px;
+  margin: 0px 20px;
+  font-size: 16px;
+  border-radius: var(--app-border);
+  outline: 0;
+}
+.input-field > .modal-picker > .modal-content-picker > .modal-content-footer > button:hover {
+  background-color: #ecf0f1;
 }

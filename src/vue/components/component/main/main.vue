@@ -13,19 +13,21 @@
        </div>
       </div>
     </div>
+
     <div 
       class="page"
-    > 
-      <component
+    > <component
         v-for="(component, index) in components"
         :key="index"
         :label="component.label"
-        :value="component.value"
+        v-model="component.value"
         :shared="component.shared"
         :mode="'form'"
-        :getter="() => {}"
         :is="component.name"
       />
+
+      <button @click="click" >click</button>
+      <!-- @update:[fieldName(component)]="() => component.value" -->
       <!-- v-if="values.length" -->
       <!-- <component
         v-for="(value, index) in values"

@@ -15,5 +15,5 @@ export default [
   { name: 'date-picker-field',   el: DatePicker },
   { name: 'time-field',          el: TimeField },
   { name: 'time-picker-field',   el: TimePicker },
-  { name: 'select-field',        el: SelectField },
+  { name: 'select-field',        el: SelectField }
 ]

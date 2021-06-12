@@ -43,4 +43,22 @@ export default class Util {
   $lang() {
     return window.navigator.browserLanguage || window.navigator.language || 'pt-BR';
   }
+
+  object_value(object, key, orValue) {
+    return object[key] || orValue
+  }
+
+  object_key(object, key) {
+    return object[key] !== undefined
+  }
+
+  in_array(array, value) {
+    return array.indexOf(value) >= 0
+  }
+
+  array_info(array) {
+    let len = array.length
+
+    return { start: 0, end: len }
+  }
 }
