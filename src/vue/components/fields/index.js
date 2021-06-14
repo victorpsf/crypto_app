@@ -4,7 +4,6 @@ import DateField         from './Date/date.vue'
 import DatePicker        from './DatePicker/datepicker.vue'
 import FileField         from './File/file.vue'
 import TimeField         from './Time/time.vue'
-import TimePicker        from './TimePicker/timepicker.vue'
 import SelectField       from './select/select.vue'
 
 export default [
@@ -14,6 +13,5 @@ export default [
   { name: 'date-field',          el: DateField },
   { name: 'date-picker-field',   el: DatePicker },
   { name: 'time-field',          el: TimeField },
-  { name: 'time-picker-field',   el: TimePicker },
   { name: 'select-field',        el: SelectField }
 ]

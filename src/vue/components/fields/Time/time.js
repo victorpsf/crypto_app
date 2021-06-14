@@ -62,12 +62,9 @@ export default {
     /**
      * call in @created
      * 
-     * set        => set value
-     * get        => get value
-     * __setter__ => 
-     * __getter__ => return get function
+     * load        => load component
      */
-    set() {
+    load() {
       if (this.modelValue === null) return;
       if (!/^(\d{2}:\d{2}:\d{2})$/g.test(this.modelValue)) return;
 
@@ -140,7 +137,7 @@ export default {
       switch (picker.toLowerCase()) {
         case 'cancel': break;
         case 'ok':
-          let values = ['input:hour:value', 'input:minute:value', 'input:hour:value']
+          let values = ['input:hour:value', 'input:minute:value', 'input:second:value']
 
           for(let index in values) {
             let value = values[index]
@@ -181,10 +178,6 @@ export default {
       if (value === __value__) 
         classNames.push('selected')
       return classNames
-    },
-
-    setAttr() {
-      
     },
 
     getElement(name) {

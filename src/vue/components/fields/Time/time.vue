@@ -57,8 +57,7 @@
                   class="modal-content-body-input-body-arrow" 
                   @click="(event) => scrollTo(event, 'up', key)"
                   @wheel="(event) => scrollTo(event, 'up-wheel', key)"
-                >
-                  <div class="arrow-up b5"></div>
+                > <div class="arrow-up b5"></div>
                 </div>
                 <div 
                   class="modal-content-body-input-body-scroll" 
@@ -67,16 +66,13 @@
                     v-for="(option, index) in constant.options"
                     :key="`${key}:${index}`"
                     :class="getClass(key, option)"
-                    @click="setAttr(key, option)"
-                  >{{ option }}
-                  </div>
+                  >{{ option }}</div>
                 </div>
                 <div
                   class="modal-content-body-input-body-arrow"
                   @click="(event) => scrollTo(event, 'down', key)"
                   @wheel="(event) => scrollTo(event, 'down-wheel', key)"
-                >
-                  <div class="arrow-down b5"></div>
+                > <div class="arrow-down b5"></div>
                 </div>
               </div>
             </div>

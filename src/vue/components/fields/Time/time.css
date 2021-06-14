@@ -1,10 +1,14 @@
 @import "../../mixins/css/basefield.css";
 
+/* input-field */
 .input-field {
   display: flex;
   justify-content: center;
   align-items: center;
-} .input-field > .time-picker {
+}
+
+/* time-picker */
+.input-field > .time-picker {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,34 +20,49 @@
   color: #000000;
   border-radius: 5px;
   cursor: pointer;
-} .input-field > .time-picker:hover {
+}
+
+/* time-picker:hover */
+.input-field > .time-picker:hover {
   opacity: 0.9;
-} .input-field > .time-picker > div:nth-child(1) {
+}
+
+/* div:nth-child(1) */
+.input-field > .time-picker > div:nth-child(1) {
   width: calc(100% - 50px);
   height: 40px;
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-} .input-field > .time-picker > div:nth-child(1) > input {
+}
+
+/* div:nth-child(1) > input */
+.input-field > .time-picker > div:nth-child(1) > input {
   width: calc(100% - 30px);
   font-size: 20px;
   padding: 5px 15px;
   border: none;
-} .input-field > .time-picker > div:nth-child(1) > input:focus {
   outline: 0;
-} .input-field > .time-picker > div:nth-child(2) {
+}
+
+/* div:nth-child(2) */
+.input-field > .time-picker > div:nth-child(2) {
   width: 50px;
   height: 40px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-} .input-field > .time-picker > div:nth-child(2) > img {
+} 
+
+/* div:nth-child(2) > img */
+.input-field > .time-picker > div:nth-child(2) > img {
   width: 15px;
   height: 15px;
 }
 
+/* modal-picker */
 .input-field > .modal-picker {
   position: fixed;
   top: 0px;
@@ -57,6 +76,7 @@
   justify-content: center;
   align-items: center;
 }
+/* modal-content-picker */
 .input-field > .modal-picker > .modal-content-picker {
   background-color: rgba(255, 255, 255, 1);
   width: 330px;
@@ -64,6 +84,7 @@
 
   border-radius: var(--app-border);
 }
+/* modal-content-header */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header {
   background-color: rgba(52, 152, 219, 1);
   width: calc(100% - 48px);
@@ -76,9 +97,12 @@
   justify-content: center;
   align-items: center;
 }
+/* modal-content-header > * */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header > * {
   width: 100%;
 }
+
+/* modal-content-header-title */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header > .modal-content-header-title {
   height: 30%;
   display: flex;
@@ -86,6 +110,8 @@
   align-items: flex-start;
   justify-content: center;
 }
+
+/* span */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header > .modal-content-header-title > span {
   font-size: 10px;
   font-weight: 400;
@@ -93,6 +119,8 @@
   letter-spacing: 1.7px;
   color: #fff;
 }
+
+/* modal-content-header-text */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header > .modal-content-header-text {
   height: 70%;
   display: flex;
@@ -100,11 +128,16 @@
   justify-content: center;
   flex-direction: column;
 }
+
+/* span */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header > .modal-content-header-text > span {
   font-size: 34px;
   font-weight: 400;
   color: #fff;
 }
+
+/* .modal-content-body */
+/* .modal-content-body */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body {
   display: flex;
   justify-content: center;
@@ -112,6 +145,7 @@
   color: #000000;
   height: 150px;
 }
+/* modal-content-body-input */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input {
   display: flex;
   flex-direction: column;
@@ -121,13 +155,19 @@
   height: 120px;
   padding: 10px;
 }
+
+/* modal-content-body-input-label */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-label {
   margin-bottom: 10px;
 }
+
+/* modal-content-body-input-body */
+/* modal-content-body-input-body */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body {
   width: 40px;
   height: 110px;
 }
+/* modal-content-body-input-body-arrow */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-arrow {
   width: 40px;
   height: 20px;
@@ -137,14 +177,17 @@
   align-items: center;
   cursor: pointer;
 }
+/* modal-content-body-input-body-arrow:hover */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-arrow:hover {
   background-color: rgba(0,0,0,0.1);
 }
+/* modal-content-body-input-body-scroll */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll {
   width: 100%;
   height: 60px;
   overflow: hidden;
 }
+/* value */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value {
   width: 20px;
   height: 20px;
@@ -154,16 +197,23 @@
   text-align: center;
   border-radius: var(--app-border);
 }
-.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number {
-  cursor: pointer;
-}
+/* value.number */
+.input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number { }
+/* value.number:hover */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number:hover {
   background-color: rgba(0,0,0,0.1);
 }
+
+/* value.number.selected */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number.selected {
   background-color: rgba(0,0,0,0.05);
 }
 
+
+
+
+/* modal-content-footer */
+/* modal-content-footer */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-footer {
   height: 50px;
 
@@ -171,6 +221,7 @@
   justify-content: flex-end;
   align-items: center;
 }
+/* button */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-footer > button {
   cursor: pointer;
   border: none;
@@ -182,6 +233,7 @@
   border-radius: var(--app-border);
   outline: 0;
 }
+/* button:hover */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-footer > button:hover {
   background-color: #ecf0f1;
 }

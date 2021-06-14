@@ -1,15 +1,16 @@
 export default {
   created() {
     let rules = [
-      { func: 'load', call: 'load' },
-      { func: 'set', call: 'set' }
+      { func: 'load', call: 'load' }
     ]
 
     this.init(rules)
   },
 
   mounted() {
-    let rules = [ { func: 'build', call: 'build' } ]
+    let rules = [
+      { func: 'build', call: 'build' }
+    ]
 
     this.init(rules)
   },

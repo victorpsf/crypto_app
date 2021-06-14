@@ -4,9 +4,9 @@ export default {
   name: 'text-field',
   mixins: [FieldMixin],
   props: {
-    value: {
-      type: [String, Number],
-      default: null
+    modelValue: {
+      type: [String, Number, null],
+      default: ''
     },
     shared: {
       type: [Object, null],
@@ -15,10 +15,10 @@ export default {
   },
   data() {
     return {
-      controller: {
+      __controller__: {
         picker: false
       },
-      protected: {
+      __protected__: {
         data: {
           value: 'click to choose',
           key: null
@@ -27,77 +27,94 @@ export default {
       }
     }
   },
+
+  /**
+   * first  => @created
+   * second => @mounted
+   */
   methods: {
-    selectLeaveMouse() {
-      if (this.controller.picker)
-        this.controller.picker = !this.controller.picker
-    },
-
-    selectMouse() {
-      this.controller.picker = !this.controller.picker
-    },
-
-    // 
+    /**
+     * call in @created
+     * 
+     * load       => load component
+     */
     load() {
-      this.getter(this.get)
-    },
+      let { options = {} } = this.shared
 
-    set() {
-      let { options } = this.shared
-
-      this.protected.options = options || {}
-      this.setValue()
-    },
-
-    get() {
-      return (internalData.key !== null) ? internalData.key: null
-    },
-
-    setOption(key, value) {
-      this.internalData = {
-        key, value
-      }
-    },
-
-    getValue(value, none) {
-      for(let key in this.internalOptions) {
-        if (key == value) return {
-          key,
-          value: this.internalOptions[key]
+      for(let key in options) {
+        if (key == this.modelValue) {
+          this.__setter__('input:value', options[key])
+          this.__setter__('input:key', key)
         }
       }
 
-      return none
+      this.__setter__('input:options', options)
     },
 
-    setValue() {
-      let none = {
-        value: 'click to choose',
-        key: null 
-      }
+    changedValue(data) {
+      this.$emit('update:modelValue', data.key)
+    },
 
-      if (this.value) {
-        none = this.getValue(this.value, none)
+    __setter__(type, value) {
+      switch (type) {
+        case 'input:value':       this.__value__   = value; break;
+        case 'input:key':         this.__key__     = value; break;
+        case 'input:data':
+          this.changedValue(value)
+          this.__data__    = value; break;
+        case 'input:options':     this.__options__ = value; break;
+        case 'controller:picker': this.__picker__  = value; break;
       }
+    },
 
-      this.internalData = none
+    __getter__(type) {
+      switch (type) {
+        case 'input:value':       return this.__value__;
+        case 'input:key':         return this.__key__;
+        case 'input:data':        return this.__data__;
+        case 'input:options':     return this.__options__;
+        case 'controller:picker': return this.__picker__;
+      }
+    },
+
+    selectMouse(event) {
+      this.__picker__ = !this.__picker__
+    },
+
+    selectLeaveMouse(event) {
+      if (this.__picker__)
+      this.__picker__ = !this.__picker__
+    },
+
+    setOption(key, value) {
+      this.__setter__('input:data', { key, value })
     }
   },
   computed: {
 
-    internalData: {
-      get()     { return this.internal.data },
-      set(data) { this.internal.data = data }
+    __data__: {
+      get()      { return this.__protected__.data },
+      set(value) { this.__protected__.data = value }      
     },
 
-    internalOptions: {
-      get()     { return this.internal.options },
-      set(data) { this.internal.options = data }
+    __value__: {
+      get()      { return this.__data__.value },
+      set(value) { this.__data__.value = value }
     },
 
-    internal: {
-      get()     { return this.protected },
-      set(data) { return this.protected = data }
+    __key__: {
+      get()      { return this.__data__.key },
+      set(value) { this.__data__.key = value }
+    },
+
+    __options__: {
+      get()      { return this.__protected__.options },
+      set(value) { this.__protected__.options = value }
+    },
+
+    __picker__: {
+      get()      { return this.__controller__.picker },
+      set(value) { this.__controller__.picker = value }
     }
   }
 }

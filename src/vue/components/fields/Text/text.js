@@ -48,12 +48,9 @@ export default {
     /**
      * call in @created
      * 
-     * order ['load', 'set', '__getter__']
+     * order ['load']
      * 
-     * set        => set value
-     * get        => get value
-     * __setter__ => 
-     * __getter__ => return get function
+     * load => load component
      */
     __setter__(type, value) {
       switch (type) {

@@ -20,7 +20,7 @@ export default {
       components: [
         { name: 'text-field',    label: 'Nome', field: 'name', value: null, shared: { type: 'password' } },
         { name: 'time-field',    label: 'Hora de Nascimento', value: '04:00:00', shared: {  } },
-        // { name: 'select-field',  label: 'Algoritmo', value: 1,    shared: { options: { 1: 'teste', 2: 'testando muito grande o teste'  } } },
+        { name: 'select-field',  label: 'Algoritmo', value: 1,    shared: { options: { 1: 'teste', 2: 'testando muito grande o teste'  } } },
         // { name: 'file-field',    label: 'Arquivo', value: null, shared: {  } },
         // { name: 'numeric-field', label: 'Idade', value: null, shared: {  } },
         // { name: 'date-field',    label: 'Data Nascimento', value: null, shared: {  } },

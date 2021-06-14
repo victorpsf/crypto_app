@@ -5,21 +5,31 @@
     </div>
 
     <div class="input-field" v-if="mode == 'form'">
-      <div class="select-picker" @click="selectMouse" @mouseleave="selectLeaveMouse">
-        <div class="input">
-          <div>{{ internalData.value }}</div>
+      <div 
+        class="select-picker" 
+        @click="selectMouse" 
+        @mouseleave="selectLeaveMouse"
+      > <div class="input">
           <div>
-            <img v-if="!controller.picker" :src="__ico__.settings.src" :alt="__ico__.settings.name">
+            {{ __getter__('input:value') }}
+          </div>
+          <div>
+            <img 
+              v-if="!__getter__('controller:picker')" 
+              :src="__ico__.settings.src" 
+              :alt="__ico__.settings.name"
+            >
           </div>
         </div>
-        <div v-if="controller.picker" class="select">
-          <div 
+        <div 
+          v-if="__getter__('controller:picker')"
+          class="select"
+        > <div
             class="option"
-            v-for="(option, key) in internalOptions"
+            v-for="(option, key) in __options__"
             :key="key"
             @click="setOption(key, option)"
-          >{{ option }}
-          </div>
+          >{{ option }}</div>
         </div>
       </div>
     </div>
