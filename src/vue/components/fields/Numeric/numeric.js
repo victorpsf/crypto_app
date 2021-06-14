@@ -4,8 +4,8 @@ export default {
   name: 'numeric-field',
   mixins: [FieldMixin],
   props: {
-    value: {
-      type: Number,
+    modelValue: {
+      type: [String, Number, null],
       default: 0
     },
     shared: {
@@ -14,71 +14,200 @@ export default {
     }
   },
   data() {
-    return { 
-      input: {
+    return {
+      __protected__: {
         el: null,
-        value: '',
-        rule: { type: ['number'] },
-        visible: false
+        value: 0,
+        rule: { 
+          original: 'number',
+          type: 'number'
+        },
+        shared: {}
       },
-      configuration: {
-        shared: [
-          { propertie: 'min', init: -250, required: true },
-          { propertie: 'max', init: 250, required: true },
-          { propertie: 'step', init: '0.01', required: false }
-        ],
-        types: {
-          init: 'number',
-          value: ['number']
+      __props__: {
+        configuration: {
+          shared: [
+            { attr: 'min', init: -250, type: 'number', required: true, rule: 'all' },
+            { attr: 'max', init:  250, type: 'number', required: true, rule: 'all' },
+            { attr: 'step', init: 0.01, type: 'number', required: true, rule: 'float' }
+          ],
+          types: {
+            init: 'number',
+            value: ['number', 'float']
+          }
         }
       }
     }
   },
+
+  /**
+   * first  => @created
+   * second => @mounted
+   */
   methods: {
-    setElement(element, type) {
-      switch (type) {
-        case 'input': 
-          this.input.el = element;
-          this.loadConfig()
+
+    changedValue(event) {
+      this.$emit('update:modelValue', event.target.value)
+    },
+
+    convertNumber() {
+      let type          = this.__getter__('input:rule'),
+          convert       = this.modelValue,
+          default_value = 0 ;
+
+
+      const _convert_to_ = function (_t_, _v_) {
+        if (_t_ == 'number') {
+          return parseInt(_v_)
+        }
+        else if (_t_ == 'float') {
+          return parseFloat(_v_)
+        } else {
+          return 0
+        }
+      }
+
+      if (typeof convert === 'number') return convert
+      if (typeof convert !== 'string') return default_value
+      
+      switch (this.$$.util.number_type(convert)) {
+        case 'decimal': 
+          convert = convert.replace(/\,/g, '.')
+        case 'int':
+        case 'float':   return _convert_to_(type, convert)
+        default: return default_value;
+      }
+    },
+
+    /**
+     * call in @created
+     * 
+     * order ['load']
+     * 
+     * load => load component
+     */
+    load() {
+      let { type, ...args } = this.shared || {}
+
+      if (!this.$$.util.in_array(this.__getter__('prop:type:rule'), type))
+        type = this.__getter__('prop:type:init')
+
+      this.__setter__('input:rule', type)
+      this.__setter__('input:shared', args)
+    },
+
+    /**
+     * call in @mounted
+     * 
+     * build => set if your use
+     */
+    build() {  },
+
+    setElement({ cicle, el, name }) {
+      if (cicle !== 'mounted') return;
+
+      switch (name) {
+        case 'input': this.__setter__('input:el', el); break;
+        default:
           break;
       }
     },
 
-    loadConfig() {
-      let { ...args } = this.shared
-
-      for(let config of this.configuration.shared) {
-        let { propertie, init, required } = config
-
-        if (typeof args[propertie] === 'undefined') {
-          if (required) this.input.el[propertie] = init
-          continue
-        } else {
-          this.input.el[propertie] = args[propertie]
-        }
+    __getter__(type) {
+      switch (type) {
+        case 'input:el':       return this.__protected_el__;
+        case 'input:shared':   return this.__protected_shared__;
+        case 'input:type':     return this.__protected_rule_original__;      
+        case 'input:rule':     return this.__protected_rule_type__;
+        case 'prop:type':      return this.__configuration_types__;
+        case 'prop:type:rule': return this.__configuration_types_rule__;
+        case 'prop:type:init': return this.__configuration_types_init__;
+        case 'prop:shared':    return this.__configuration_shared__;
       }
     },
 
-    passwordVisibleChange(event) {
-      this.input.visible = !this.input.visible
-
-      if (this.input.visible)
-        this.input.rule.type.push('text')
-      else
-        this.input.rule.type.splice(1, 1)
+    __setter__(type, value) { 
+      switch (type) {
+        case 'input:el':    
+          this.__protected_el__ = value;
+          this.__set_attr__()
+          break;
+        case 'input:shared': this.__protected_shared__ = value;    break;
+        case 'input:rule':   this.__protected_rule_type__ = value; break;
+      }
     },
 
-    set() {
-      this.input.value = this.value || ''
-    },
+    __set_attr__() {
+      let attributes = this.__getter__('prop:shared')
+      let shared     = this.__getter__('input:shared')
 
-    get() {
-      return this.input.value
+      for (let attribute of attributes) {
+        let value = null,
+            type  = this.__getter__('input:rule'),
+            el    = this.__getter__('input:el');
+
+        if (this.$$.util.value_is(shared[attribute.attr], { types: ['number'] })) {
+          value = shared[attribute.attr]
+        } else {
+          if (this.$$.util.value_is(attribute.required, { data: [false, undefined, null] })) 
+            continue;
+
+          if (attribute.rule === "all") {
+            value = attribute.init
+          } 
+          else if (attribute.rule === type) {
+            value = attribute.init
+          } else {
+            continue
+          }
+        }
+
+        el[attribute.attr] = value
+      }
     }
   },
   computed: {
-    type() {
-      return (this.input.rule.type.length > 1) ? this.input.rule.type[1] : this.input.rule.type[0]
+    __protected_el__: {
+      get()  { return this.__protected__.el },
+      set(v) { this.__protected__.el = v }
+    },
+
+    __protected_shared__: {
+      get()  { return this.__protected__.shared },
+      set(v) { this.__protected__.shared = v }
+    },
+
+    __protected_rule__() {
+      return this.__protected__.rule
+    },
+
+    __protected_rule_original__() {
+      return this.__protected__.rule.original
+    },
+
+    __protected_rule_type__: {
+      get()  { return this.__protected__.rule.type },
+      set(v) { this.__protected__.rule.type = v }
+    },
+
+    __configuration__() {
+      return this.__props__.configuration
+    },
+
+    __configuration_types__() {
+      return this.__configuration__.types
+    },
+
+    __configuration_shared__() {
+      return this.__configuration__.shared
+    },
+
+    __configuration_types_rule__() {
+      return this.__configuration_types__.value
+    },
+
+    __configuration_types_init__() {
+      return this.__configuration_types__.init
     }
   }
 }

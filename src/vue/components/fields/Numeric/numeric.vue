@@ -7,10 +7,11 @@
     <div class="input-field" v-if="mode == 'form'">
       <div class="number-picker">
         <div>
-          <input 
-            v-this="(el) => setElement(el, 'input')"
-            :type="type"
-            v-model="input.value"
+          <input
+            v-this:input="setElement"
+            :type="__getter__('input:type')"
+            :value="convertNumber()"
+            @input="changedValue"
           >
         </div>
       </div>

@@ -18,11 +18,11 @@ export default {
         }
       },
       components: [
-        { name: 'text-field',    label: 'Nome', field: 'name', value: null, shared: { type: 'password' } },
-        { name: 'time-field',    label: 'Hora de Nascimento', value: '04:00:00', shared: {  } },
-        { name: 'select-field',  label: 'Algoritmo', value: 1,    shared: { options: { 1: 'teste', 2: 'testando muito grande o teste'  } } },
+        { name: 'text-field',    field: 'name', label: 'Nome',                value: null,       shared: { type: 'password' } },
+        { name: 'time-field',    field: 'time', label: 'Hora do lembrete',    value: '04:00:00', shared: {  } },
+        { name: 'select-field',  field: 'sexo', label: 'Algoritmo',           value: 1,          shared: { options: { 1: 'Feminino', 2: 'Masculino'  } } },
+        { name: 'numeric-field', field: 'idade', label: 'Idade',              value: '14,4',       shared: { type: 'float' } },
         // { name: 'file-field',    label: 'Arquivo', value: null, shared: {  } },
-        // { name: 'numeric-field', label: 'Idade', value: null, shared: {  } },
         // { name: 'date-field',    label: 'Data Nascimento', value: null, shared: {  } },
         // { name: 'input-field',   label: 'Input Field', value: '04:00:00', shared: {  } },
       ]

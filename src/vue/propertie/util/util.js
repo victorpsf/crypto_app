@@ -45,20 +45,76 @@ export default class Util {
   }
 
   object_value(object, key, orValue) {
-    return object[key] || orValue
+    try {
+      return object[key] || orValue
+    } catch (error) {
+      return orValue
+    }
   }
 
   object_key(object, key) {
-    return object[key] !== undefined
+    try {
+      return object[key] !== undefined
+    } catch (error) {
+      console.error(error)
+      return false
+    }
   }
 
   in_array(array, value) {
-    return array.indexOf(value) >= 0
+    try {
+      return array.indexOf(value) >= 0
+    } catch (error) {
+      console.error(error)
+      return false
+    }
   }
 
   array_info(array) {
-    let len = array.length
+    let info = { start: 0, end: 0 }
 
-    return { start: 0, end: len }
+    try {
+      info.end = array.length
+    } catch (error) {
+      console.error(error)
+    }
+
+    return info
+  }
+
+  value_is(value, { data = [], types = [] }) {
+    let bool = false
+    try {
+      for (let _data_ of data) {
+        if (bool) continue
+        bool = value === _data_
+      }
+      for (let type of types) {
+        if (bool) continue
+        bool = type === typeof value
+      }
+    } catch (error) { console.error(error) }
+    return bool
+  }
+
+  number_type(value) {
+    if (!this.value_is(value, { types: ['string'] })) return 'NaN'
+
+    // int validation
+    if (/^(\d+)$/g.test(value)) {
+      return 'int'
+    }
+    // float validation
+    else if (/^(\d+\.\d+)$/g.test(value)) {
+      return 'float'
+    }
+    // decimal validation
+    else if (/^(\d+\,\d+)$/g.test(value)) {
+      return 'decimal'
+    }
+    // invalid format
+    else {
+      return 'NaN'
+    }
   }
 }
