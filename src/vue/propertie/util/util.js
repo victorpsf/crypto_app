@@ -61,9 +61,17 @@ export default class Util {
     }
   }
 
+  index_array(array, value) {
+    try {
+      return array.indexOf(value)
+    } catch (error) {
+      return -1
+    }
+  }
+
   in_array(array, value) {
     try {
-      return array.indexOf(value) >= 0
+      return this.index_array(array, value) >= 0
     } catch (error) {
       console.error(error)
       return false

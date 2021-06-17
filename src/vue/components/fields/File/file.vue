@@ -8,7 +8,7 @@
         <div class="files">
           <div 
             class="file" 
-            v-for="(file, index) in input.value"
+            v-for="(file, index) in __getter__('input:value')"
             :key="index"
           >
             <div class="name">{{ file.name }}</div>
@@ -27,14 +27,13 @@
           type="file"
           v-this:input="setElement"
           v-show="false"
-          @change="inputFileChange"
-          :multiple="input.rules.multiple"
-          :accept="input.rules.accept"
-          :disabled="input.progress"
+          @input="inputFileChange"
+          :disabled="__getter__('input:progress')"
+          multiple="true"
         >
 
         <img 
-          :class="uploadClass"
+          :class="__getter__('prop:class:union')"
           v-if="mode == 'form'"
           @click="inputFilesClick"
           :src="__ico__.upload.src"

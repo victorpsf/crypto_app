@@ -1,8 +1,9 @@
 import MyEvent from '../event'
 import Base from '../app'
+import Util from '../../util/util'
 
 export default class CustomFileReader extends MyEvent {
-  constructor(main = new Base()) {
+  constructor(file = new File([], ''), main = new Base()) {
     super()
 
     this.__src__ = {
@@ -25,6 +26,8 @@ export default class CustomFileReader extends MyEvent {
         "src": "data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGQ9Ik00NTkuMzYsMTAwLjY0bC05Ni05NkMzNjAuMzQxLDEuNjQ1LDM1Ni4yNTMtMC4wMjQsMzUyLDBIOTZjLTI2LjUxLDAtNDgsMjEuNDktNDgsNDh2NDE2YzAsMjYuNTEsMjEuNDksNDgsNDgsNDhoMzIwDQoJCQljMjYuNTEsMCw0OC0yMS40OSw0OC00OFYxMTJDNDY0LjAyNSwxMDcuNzQ3LDQ2Mi4zNTUsMTAzLjY2LDQ1OS4zNiwxMDAuNjR6IE00MzIsNDY0YzAsOC44MzctNy4xNjMsMTYtMTYsMTZIOTYNCgkJCWMtOC44MzcsMC0xNi03LjE2My0xNi0xNlY0OGMwLTguODM3LDcuMTYzLTE2LDE2LTE2aDI0MHY2NGMwLDE3LjY3MywxNC4zMjcsMzIsMzIsMzJoNjRWNDY0eiIvPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"
       }
     }
+
+    this._file_ = file
     this._main_ = main
   }
 
@@ -40,13 +43,78 @@ export default class CustomFileReader extends MyEvent {
    *   lastModified -> timestamp
    * }
    */
-  _file_info_(file = new File([], '')) {
+  _file_info_() {
     return {
-      name         : file.name,
-      size         : file.size,
-      type         : file.type,
-      lastModified : file.lastModified
+      name         : this._file_.name,
+      size         : this._file_.size,
+      type         : this._file_.type,
+      lastModified : this._file_.lastModified
     }
+  }
+
+  static validate_model(data) {
+    let validator = {
+      name: {
+        type: 'string',
+        regexp: /.*/g
+      },
+      size: {
+        type: 'number',
+        regexp: /^(\d+)$/g
+      },
+      type: {
+        type: 'string',
+        regexp: /^(.+\/.+)$/g
+      },
+      data: {
+        type: 'object',
+        value: {
+          format: {
+            type: 'string',
+            values: ['hex', 'base64', 'utf-8']
+          },
+          value: {
+            type: 'string'
+          }
+        }
+      }
+    }, validated = true,
+       util = new Util();
+
+    if ("object" !== typeof data)
+      throw "error: invalid format model is not object"
+
+    if (data instanceof Array && Array.isArray(data)) {
+      for(let _data_ of data)
+        validated = this.validate_model(_data_)
+      return validated;
+    }
+
+    if (
+      !util.value_is(data.name, { types: [validator.name.type] })
+    ) return false
+    if (
+      !util.value_is(data.size, { types: [validator.size.type] }) ||
+      !validator.name.regexp.test(data.size)
+    ) return false
+    if (
+      !util.value_is(data.type, { types: [validator.type.type] }) ||
+      !validator.name.regexp.test(data.type)
+    ) return false
+    if (
+      !util.value_is(data.data, { types: [validator.data.type] })
+    ) return false
+    if (
+      !util.value_is(data.data.format, { types: [validator.data.value.format.type] })
+    ) return false
+    if (
+      !util.in_array(validator.data.value.format.values, data.data.format)
+    ) return false
+    if (
+      !util.value_is(data.data.value, { types: [validator.data.value.value.type] })
+    ) return false
+
+    return validated
   }
 
   _get_src_(args) {
@@ -108,11 +176,11 @@ export default class CustomFileReader extends MyEvent {
       if (src) info.src = this._get_src_({ buffer, mime: info.type })
 
       this.emitEvent({ event, type: 'end', file: info })
-      resolve(true)
+      return resolve(info)
     }
   }
 
-  readFile(file, options) {
+  readFile(options) {
     return new Promise((resolve) => {
       try {
         let { encoding = 'hex', src = false } = options || {}
@@ -121,22 +189,18 @@ export default class CustomFileReader extends MyEvent {
           encoding = 'hex'
         if (['hex', 'base64', 'utf-8'].indexOf(encoding) < 0) 
           encoding = 'hex'
-        let info = this._file_info_(file),
+        let info = this._file_info_(),
             fileReader = new FileReader()
     
         this.readToEvents({
           fileReader, info, encoding, src, resolve
         })
-        fileReader.readAsArrayBuffer(file)
+
+        fileReader.readAsArrayBuffer(this._file_)
       } catch (error) {
         this.emitEvent({ event: null, type: 'error', error, file: info })
-        return resolve(true)
+        return resolve(null)
       }
     })
-  }
-
-  async readFiles(files = [], args) {
-    for(let file of files)
-      await this.readFile(file, args)
   }
 }

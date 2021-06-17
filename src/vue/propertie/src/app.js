@@ -14,5 +14,8 @@ export default class App extends Propertie {
     this.util      = new Util()
   }
 
-  fileReader() { return new CustomFileReader(this) }
+  fileReader(file) { 
+    if (file) return new CustomFileReader(file, this)
+    else      return CustomFileReader
+  }
 }

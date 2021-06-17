@@ -79,15 +79,16 @@
 }
 /* modal-content-picker */
 .input-field > .modal-picker > .modal-content-picker {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--bg-color);
   width: 330px;
   height: 305px;
 
   border-radius: var(--app-border);
+  color: #ffffff
 }
 /* modal-content-header */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-header {
-  background-color: rgba(52, 152, 219, 1);
+  background-color: var(--bg-ligth-color);
   width: calc(100% - 48px);
   height: 104px;
   padding: 0px 24px;
@@ -160,6 +161,7 @@
 /* modal-content-body-input-label */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-label {
   margin-bottom: 10px;
+  color: #ffffff;
 }
 
 /* modal-content-body-input-body */
@@ -197,6 +199,8 @@
   padding: 5px;
   text-align: center;
   border-radius: var(--app-border);
+  color: #ffffff;
+  cursor: not-allowed;
 }
 /* value.number */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-body > .modal-content-body-input > .modal-content-body-input-body > .modal-content-body-input-body-scroll > .value.number { }
@@ -226,15 +230,15 @@
 .input-field > .modal-picker > .modal-content-picker > .modal-content-footer > button {
   cursor: pointer;
   border: none;
-  background-color: #ffffff;
-  color: #3498db;
+  background-color: var(--bg-color);
   padding: 10px;
   margin: 0px 20px;
   font-size: 16px;
   border-radius: var(--app-border);
   outline: 0;
+  color: rgba(255, 255, 255, 0.7);
 }
 /* button:hover */
 .input-field > .modal-picker > .modal-content-picker > .modal-content-footer > button:hover {
-  background-color: #ecf0f1;
+  background-color: rgba(255,255,255, 0.2);
 }

@@ -68,7 +68,7 @@
   width: 100%;
   z-index: 5;
   max-height: 120px;
-  background-color: #ffffff;
+  background-color: var(--bg-ligth-color);
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -79,6 +79,8 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   border-bottom-left-radius: var(--app-border);
   border-bottom-right-radius: var(--app-border);
+
+  box-shadow: 0px 0px 5px 0px var(--bg-ligth-color);
 }
 
 .input-field > .select-picker > .select > .option {
@@ -91,6 +93,9 @@
   font-size: 16px;
 
   cursor: pointer;
+
+  background-color: var(--bg-color);
+  color: #ffffff;
 }
 
 .input-field > .select-picker > .select > .option:hover {

@@ -14,8 +14,6 @@
   timeZone?: string;
 */
 
-import date from "../../fields/Date/date";
-
 export default {
   props: {
     label: {
