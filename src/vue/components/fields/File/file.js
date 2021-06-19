@@ -198,6 +198,8 @@ export default {
     },
 
     async addFiles(files) {
+      let __files__ = []
+
       for(let index in files) {
         let file = files[index]
         let fileReader = this.$$.fileReader(file)
@@ -205,16 +207,12 @@ export default {
         fileReader.listen(this.listenFileChange)
         file = await fileReader.readFile({ encoding: 'hex', src: false })
 
-        if (file === null) {
-          files.splice(index, 1)
-          continue
-        }
-
-        files[index] = file
+        if (file === null) continue
+        __files__.push(file)
       }
 
-      this.__setter__('input:value', files)
-      this.changedValue(files)
+      this.__setter__('input:value', __files__)
+      this.changedValue(__files__)
     },
 
     async inputFileChange(event = new Event()) {

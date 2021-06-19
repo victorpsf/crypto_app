@@ -19,12 +19,19 @@ async function createWindow() {
 
     minWidth: 512,
     minHeight: 384,
+
+    center: true,
+    fullscreenable: true,
+
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: true,
       contextIsolation: !true,
-      plugins: true
+
+      webSecurity: false,
+      allowRunningInsecureContent: false
+      // plugins: true
     }
   })
 

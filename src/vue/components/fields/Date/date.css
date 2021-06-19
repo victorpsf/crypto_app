@@ -1,39 +1,388 @@
 @import "../../mixins/css/basefield.css";
 
+/* input-field */
 .input-field {
   display: flex;
   justify-content: center;
   align-items: center;
-} .input-field > .date-picker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
 
+/* date-picker */
+.input-field > .date-picker {
   width: 100%;
   height: 40px;
-  border: 1px solid #ecf0f1;
-  border-radius: 5px;
-} .input-field > .date-picker > div:nth-child(1) {
-  width: calc(100% - 50px);
-  height: 40px;
+}
 
+.input-field > .date-picker > .date-picker-input {
+  background-color: #ffffff;
+  border-radius: var(--app-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.input-field > .date-picker > .date-picker-input:hover {
+  opacity: 0.9;
+}
+
+/* date-picker-view */
+.input-field > .date-picker > .date-picker-input > .date-picker-view {
+  width: calc(100% - 40px);
+  height: 100%;
+
+  color: #000000;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 400;
   font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} .input-field > .date-picker > div:nth-child(2) {
-  width: 50px;
-  height: 40px;
+}
+
+/* date-picker-img */
+.input-field > .date-picker > .date-picker-input > .date-picker-img {
+  width: 40px;
+  height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
-} .input-field > .date-picker > div:nth-child(2) > img {
+}
+
+/* date-picker-img-element */
+.input-field > .date-picker > .date-picker-input > .date-picker-img > .date-picker-img-element {
+  width: 25px;
+  height: 15px;
+  cursor: pointer;
+}
+
+/* date-picker-modal */
+.date-picker-modal {
+  position: fixed;
+  z-index: 5;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.6);
+}
+
+/* date-picker-modal-content */
+.date-picker-modal > .date-picker-modal-content {
+  width: 330px;
+  height: 520px;
+
+  background-color: var(--bg-color);
+  border-radius: var(--app-border);
+}
+
+/* date-picker-modal-content-header */
+.date-picker-modal-content > .date-picker-modal-content-header {
+  background-color: var(--bg-ligth-color);
+
+  width: calc(100% - 48px);
+  height: 104px;
+  padding: 0px 24px;
+  border-radius: var(--app-border) var(--app-border) 0 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* date-picker-modal-content-header-title */
+.date-picker-modal-content > .date-picker-modal-content-header > .date-picker-modal-content-header-title {
+  width: 100%;
+  height: 32px;
+
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  color: #fff;
+} 
+
+/* date-picker-modal-content-header-view */
+.date-picker-modal-content > .date-picker-modal-content-header > .date-picker-modal-content-header-view {
+  font-size: 34px;
+  font-weight: 400;
+  color: #fff;
+  width: 100%;
+
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  color: #fff;
+}
+
+/* date-picker-modal-content-controller */
+.date-picker-modal-content > .date-picker-modal-content-controller {
+  padding-top: 10px;
+}
+
+/* date-picker-modal-content-controller-controls */
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls {
+  width: calc(100% - 24px);
+  padding: 0px 12px;
+  height: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-input {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: var(--app-border);
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-input:hover {
+  animation-name: controlsInputHover;
+  animation-delay: .1s;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-input > div {
+  margin: 0px 3px;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-prev_next {
+  display: flex;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-prev_next > div {
+  border-radius: 50%;
   width: 15px;
   height: 15px;
+  padding: 10px;
+  outline: 0;
+  border: none;
 
+  background-color: var(--bg-ligth-color);
   cursor: pointer;
-} .input-field > .date-picker > div:nth-child(2) > img:hover {
+  margin: 0px 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-prev_next > div:hover {
   opacity: 0.6;
 }
 
+.date-picker-modal-content > .date-picker-modal-content-controller > .date-picker-modal-content-controller-controls > .date-picker-modal-content-controller-controls-prev_next > div > img {
+  filter: invert(100%) sepia(79%) saturate(476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+  width: 10px;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 300px;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view > button {
+  cursor: pointer;
+  width: 70px;
+  height: 50px;
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 40px;
+  padding: 5px 5px;
+  outline: 0;
+  border: none;
+  background-color: var(--bg-color);
+  text-align: center;
+  border-radius: var(--app-border);  
+
+  animation: aparecer_valor;
+  animation-delay: .1;
+  animation-duration: .25s;
+  animation-play-state: running;
+  animation-direction: normal;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view > button.current {
+  padding: 2px 5px;
+  margin: 1px 0px;
+  /* border-bottom: 2px solid var(--bg-ligth-color);
+  border-top: 2px solid var(--bg-ligth-color); */
+  box-shadow: 0px 1px 3px 0px var(--bg-ligth-color);
+}
+
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view > button:hover {
+  padding: 5px 3px 5px 3px;
+  animation: value_hover;
+
+  animation-duration: .5s;
+  animation-play-state: running;
+  animation-direction: end;
+  animation-fill-mode: forwards;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-month {
+  width: 100%;
+  height: 300px;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-month > .view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  animation: aparecer_valor;
+  animation-delay: .1;
+  animation-duration: .25s;
+  animation-play-state: running;
+  animation-direction: normal;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-month > .view > button {
+  cursor: pointer;
+  width: 70px;
+  height: 50px;
+  font-size: 15px;
+  color:#ffffff;
+  line-height: 40px;
+  padding: 5px;
+  outline: 0;
+  border: none;
+  background-color: var(--bg-color);
+  text-align: center;
+  border-radius: var(--app-border); 
+  margin: 5px 0px; 
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-month > .view > button.current {
+  box-shadow: 0px 1px 3px 0px var(--bg-ligth-color);
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-month > .view > button:hover {
+  padding: 5px 3px 5px 3px;
+  animation: value_hover;
+
+  animation-duration: .5s;
+  animation-play-state: running;
+  animation-direction: end;
+  animation-fill-mode: forwards;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day {
+  display: flex;
+  height: 300px;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day > .day {
+  display: flex;
+  flex-direction: column;
+  width: 14%;
+  text-align: center;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day > .day > .title {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day > .day > .value {
+  height: 18px;
+  padding: 13px;
+  border-radius: 50%;
+
+  animation: aparecer_valor;
+  animation-delay: .1;
+  animation-duration: .25s;
+  animation-play-state: running;
+  animation-direction: normal;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day > .day > .value.exists {
+  cursor: pointer;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day > .day > .value.current {
+  box-shadow: -1px 1px 1px 1px var(--bg-ligth-color);
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .view-day > .day > .value.exists:hover {
+  padding: 13px 11px 13px 11px;
+  animation: value_hover;
+
+  animation-duration: .5s;
+  animation-play-state: running;
+  animation-direction: end;
+  animation-fill-mode: forwards;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .footer {
+  height: 50px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .footer > button {
+  cursor: pointer;
+  border: none;
+  background-color: var(--bg-color);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  margin: 10px 20px; 
+  font-size: 16px;
+  border-radius: var(--app-border);
+  outline: 0;
+}
+
+.date-picker-modal-content > .date-picker-modal-content-controller > .footer > button:hover {
+  background-color: rgba(255,255,255, 0.2);
+}
+
+@keyframes aparecer_valor {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes value_hover {
+  to {
+    border-right: 0px solid var(--bg-ligth-color);
+    border-left: 0px solid var(--bg-ligth-color);
+    border-right: 2px solid var(--bg-ligth-color);
+    border-left: 2px solid var(--bg-ligth-color);
+  }
+}
+
+@keyframes controlsInputHover {
+  to {
+    padding: 8px 10px 8px 10px;
+    border-top: 2px solid var(--bg-ligth-color);
+    border-bottom: 2px solid var(--bg-ligth-color);
+  }  
+}

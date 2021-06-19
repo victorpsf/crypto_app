@@ -23,7 +23,7 @@ export default {
         { name: 'select-field',  field: 'sexo',  label: 'Algoritmo',        value: 1,          shared: { options: { 1: 'Feminino', 2: 'Masculino', 3: 'Sis', 4: 'Tras', 5: 'Animal', 6: 'Sei lá' } } },
         { name: 'numeric-field', field: 'idade', label: 'Idade',            value: '14,4',     shared: { type: 'float', step: 0.1 } },
         { name: 'file-field',    field: 'teste', label: 'Arquivo',          value: null,       shared: { accept: 'image/*', multiple: true } },
-        // { name: 'date-field',    label: 'Data Nascimento', value: null, shared: {  } },
+        { name: 'date-field',    label: 'Data Nascimento',                  value: '2021-12-10', shared: {  } },
       ]
     }
   },
