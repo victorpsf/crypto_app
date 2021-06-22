@@ -1,26 +1,26 @@
-import Storage from '../lib/storage'
 import Base from './base'
 
-const getKey = function ({ storage = new Storage(), call, pid, data }) {
-  
+class Config extends Base {
+  constructor(arg) {
+    super(arg)
+  }
+
+  async get() { }
+
+  async post() {}
+
+  async put() {}
+
+  async delete() {}
 }
 
-const postKey = function ({ storage = new Storage(), call, pid, data }) {
-
+const handler = function (method) {
+  return (...args) => { return Config.instance.apply(null, args)[method]() }
 }
-
-const putKey = function ({ storage = new Storage(), call, pid, data }) {
-
-}
-
-const deleteKey = function ({ storage = new Storage(), call, pid, data }) {
-
-}
-
 
 export default {
-  'key:[GET]': getKey,
-  'key:[POST]': postKey,
-  'key:[PUT]': putKey,
-  'key:[DELETE]': deleteKey
+  '/key:[GET]':    handler('get'),
+  '/key:[POST]':   handler('post'),
+  '/key:[PUT]':    handler('put'),
+  '/key:[DELETE]': handler('delete')
 }

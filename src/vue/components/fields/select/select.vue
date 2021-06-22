@@ -35,7 +35,7 @@
     </div>
 
     <div class="input-field" v-else>
-      <div class="input-value">{{ value }}</div>
+      <div class="input-value">{{ __getter__('input:value') }}</div>
     </div>
   </div>
 </template>

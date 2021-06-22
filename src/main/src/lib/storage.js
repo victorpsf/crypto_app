@@ -53,6 +53,15 @@ export default class Storage {
   /**
    * @param {*} path 
    * 
+   * delete file path
+   */
+  delete(path) {
+    Fs.unlinkSync(path)
+  }
+
+  /**
+   * @param {*} path 
+   * 
    * read file in path
    */
   read(path, parser) {

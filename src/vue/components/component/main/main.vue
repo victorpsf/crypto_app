@@ -17,25 +17,12 @@
     <div 
       class="page"
     > <component
-        v-for="(component, index) in components"
-        :key="index"
-        :label="component.label"
-        v-model="component.value"
-        :shared="component.shared"
-        :mode="'form'"
-        :is="component.name"
-      />
-
-      <button @click="click" >click</button>
-      <!-- @update:[fieldName(component)]="() => component.value" -->
-      <!-- v-if="values.length" -->
-      <!-- <component
         v-for="(value, index) in values"
         :key="index"
         :class="getClass({ value, index })"
         :is="value.name"
         v-show="openView({ value, index })"
-      /> -->
+      />
     </div>
   </div>
 </template>

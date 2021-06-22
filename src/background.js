@@ -21,7 +21,7 @@ async function createWindow() {
     minHeight: 384,
 
     center: true,
-    fullscreenable: true,
+    // fullscreenable: true,
 
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -29,8 +29,8 @@ async function createWindow() {
       nodeIntegration: true,
       contextIsolation: !true,
 
-      webSecurity: false,
-      allowRunningInsecureContent: false
+      // webSecurity: false,
+      // allowRunningInsecureContent: false
       // plugins: true
     }
   })

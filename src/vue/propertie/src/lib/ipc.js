@@ -166,16 +166,8 @@ export default class Ipc {
   }
 
   setAndGetRequestData({ pid, time, resolve, reject, url, method, data }) {
-    this.setRequest(pid, {
-      time,
-      resolve,
-      reject
-    })
-    return {
-      pid,
-      call: `${url}:[${method}]`,
-      data
-    }
+    this.setRequest(pid, { time, resolve, reject })
+    return { pid, call: `${url}:[${method}]`, data: Object.assign({}, data) }
   }
 
   setRequest(pid, data) {
@@ -201,22 +193,24 @@ export default class Ipc {
           reject,
           ...args
         })
+
         this.callMain(args)
-      } catch (error) { return reject({ message: error }) }
+      } catch (error) { console.error(error); return reject({ message: error }) }
     })
 
   }
 
   listen() {
     ipcRenderer.on(this.__listen__.responseListen, (event, args) => {
-      let { original: { pid }, response: { status } } = args
+      let { original: { pid }, response } = args
       let { resolve, reject } = this.getRequest(pid)
 
       try {
+        let { status } = response
         this.unsetRequest(pid)
         if (status === 'error') throw args.response
         return resolve({ pid, ...args.response })
-      } catch (error) { return reject({ pid, ...error }) }
+      } catch (error) { return reject({ pid, error: error }) }
     })
     
     setInterval(() => {

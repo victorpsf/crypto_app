@@ -1,10 +1,10 @@
-import hashCipher from '../../../types/hash_cipher'
-import encoding from '../../../types/encoding_save'
+import HashCipher from '../types/hash_cipher'
+import encoding from '../types/encoding_save'
 
 declare namespace Hash {
   interface HashOptions {
     // default sha512
-    algorithm: hashCipher,
+    algorithm: HashCipher,
     // default hex
     encoding: encoding
   }
