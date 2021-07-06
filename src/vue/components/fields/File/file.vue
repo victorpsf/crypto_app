@@ -1,6 +1,6 @@
 <template>
   <div class="field-form">
-    <div class="label-field">
+    <div class="label-field noselect">
       <label>{{ label }}</label>
     </div>
     <div class="input-field">

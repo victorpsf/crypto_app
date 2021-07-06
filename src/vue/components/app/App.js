@@ -19,9 +19,6 @@ export default {
             }, {
               label: 'hash',
               name: 'hash-page'
-            }, {
-              label: 'keys',
-              name: 'keys-page'
             }]
           }
         },

@@ -1,0 +1,2 @@
+@import "./mobile_page.css" (max-width: 760px);
+@import "./desktop_page.css" (min-width: 761px);

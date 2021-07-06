@@ -125,4 +125,19 @@ export default class Util {
       return 'NaN'
     }
   }
+
+  copytoClipboard(text) {
+    try {
+      let element = document.createElement('textarea')
+  
+      element.value = text
+      document.body.appendChild(element)
+      element.focus()
+      element.select()
+
+      document.execCommand('copy')
+      element.parentNode.removeChild(element)
+      alert('copiado para área de transferencia')
+    } catch (error) { alert('Error: não foi possível copiar texto para área de transferência') }
+  }
 }

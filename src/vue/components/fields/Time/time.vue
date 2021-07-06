@@ -2,7 +2,7 @@
   <div class="field-form">
 
     <!-- label field -->
-    <div class="label-field">
+    <div class="label-field noselect">
       <label>{{ label }}</label>
     </div>
 

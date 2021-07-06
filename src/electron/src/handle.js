@@ -25,6 +25,7 @@ export default function handler(args) {
         response
       })
     } catch (error) {
+      console.log('error: ', error)
       return reject({
         original: args,
         response: { status: 'error', message: error, result: null }

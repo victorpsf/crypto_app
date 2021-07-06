@@ -21,6 +21,7 @@ export default {
       try {
         let { data: { fields } } = await this.$$.ipc.request({ url: '/config', method: 'get' })
 
+        console.log(fields)
         this.__setter__('page:component', fields)
       } catch (error) { }
     },

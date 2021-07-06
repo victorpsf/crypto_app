@@ -1,0 +1,101 @@
+.page-component {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-component > .page-fields {
+  width: 90%;
+  height: 200px;
+  min-height: 200px;
+}
+
+.page-component > .page-actions {
+  width: 90%;
+  height: 40px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 5px;
+}
+
+.page-component > .page-actions > button {
+  margin: 0px 20px;
+
+  padding: 10px 15px;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  background-color: var(--bg-ligth-color);
+  color: #ffffff;
+  border-radius: var(--app-border);
+}
+
+.page-component > .page-actions > button:hover {
+  opacity: 0.6;
+}
+
+.page-component > .page-table {
+  width: 90%;
+  height: calc(100% - 250px);
+
+  overflow: auto;
+}
+
+.page-component > .page-table > table {
+  font-family: arial, sans-serif;
+  width: 100%;
+
+  border-radius: var(--app-border);
+  background-color: var(--bg-ligth-color);
+}
+
+.page-component > .page-table > table > tr > th {
+  text-align: left;
+  background-color: var(--bg-ligth-color);
+}
+
+.page-component > .page-table > table > tr > th, td {
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.page-component > .page-table > table > .hash-table-value {
+  background-color: var(--bg-color-hover);
+}
+
+.page-component > .page-table > table > .hash-table-value:nth-child(even) {
+  background-color: var(--bg-color);
+}
+
+.page-component > .page-table > table > tr > .hash-table-value-line {
+  cursor: pointer;
+}
+
+.page-component > .page-table > table > tr > .hash-table-value-line:hover {
+  opacity: 0.8;
+}
+
+.page-component > .page-table > table > tr > .option {
+  max-width: 100px;
+  min-width: 40px;
+
+  text-align: center;
+}
+
+.page-component > .page-table > table > tr > .option > img {
+  width: 15px;
+  height: 15px;
+
+  cursor: pointer;
+}
+
+.page-component > .page-table > table > tr > .option > img:hover {
+  filter: invert(100%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}

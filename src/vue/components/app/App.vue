@@ -22,7 +22,8 @@
   height: 100%;
   padding: 0px;
   margin: 0px;
-} #app {
+}
+#app {
   overflow: hidden;
   position: absolute;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -30,67 +31,85 @@
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
   background-color: var(--bg-color);
-} .app {
+}
+.app {
   width: 100%;
   height: 100%;
   position: absolute;
   display: flex;
-} *::-webkit-scrollbar-track {
-} *::-webkit-scrollbar {
+}
+*::-webkit-scrollbar-track {
+}
+*::-webkit-scrollbar {
   width: 2px;
   height: 2px;
   background-color: #ffffff;
-} *::-webkit-scrollbar-thumb {
+}
+*::-webkit-scrollbar-thumb {
   border-radius: 5px;
   -webkit-box-shadow: inset 0 0 6px #aaaaaa;
   background-color: #aaaaaa;
 }
-
 .arrow-up {
   width: 0;
   height: 0;
   border-style: solid;
   border-color: transparent transparent rgba(255,255,255,1) transparent;
-} .arrow-up.b5 {
+}
+.arrow-up.b5 {
   border-width: 0 5px 5px 5px;
-} .arrow-up.b10 {
+}
+.arrow-up.b10 {
   border-width: 0 10px 10px 10px;
-} .arrow-up:hover {
+}
+.arrow-up:hover {
   border-color: transparent transparent rgba(255,255,255,0.6) transparent;
-} .arrow-left {
+}
+.arrow-left {
   width: 0;
   height: 0;
   border-style: solid;
   border-color: transparent rgba(255,255,255,1) transparent transparent;
   cursor: pointer;
-} .arrow-left.b5 {
+}
+.arrow-left.b5 {
   border-width: 5px 5px 5px 0px;
-} .arrow-left.b10 {
+}
+.arrow-left.b10 {
   border-width: 10px 10px 10px 0px;
-} .arrow-left:hover {
+}
+.arrow-left:hover {
   border-color: transparent rgba(255,255,255,0.6) transparent transparent;
-} .arrow-right {
+}
+.arrow-right {
   width: 0;
   height: 0;
   border-style: solid;
   border-color: transparent transparent transparent rgba(255,255,255,1);
   cursor: pointer;
-} .arrow-right.b5 {
+}
+.arrow-right.b5 {
   border-width: 5px 0px 5px 5px;
-} .arrow-right.b10 {
+}
+.arrow-right.b10 {
   border-width: 10px 0px 10px 10px;
-} .arrow-right:hover {
+}
+.arrow-right:hover {
   border-color: transparent transparent transparent rgba(255,255,255,0.6);
-} .arrow-down {
+}
+.arrow-down {
   width: 0;
   height: 0;
   border-style: solid;
   border-color: rgba(255,255,255,1) transparent transparent transparent;
-} .arrow-down.b5 {
+}
+.arrow-down.b5 {
   border-width: 5px 5px 0 5px;
-} .arrow-down.b10 {
+}
+.arrow-down.b10 {
   border-width: 10px 10px 0 10px;
-} .arrow-down:hover {
+}
+.arrow-down:hover {
   border-color: rgba(255,255,255,0.6) transparent transparent transparent;
 }
 .noselect {

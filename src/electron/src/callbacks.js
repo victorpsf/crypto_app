@@ -29,4 +29,6 @@ export function StartAppCallback(listen, func) {
     return () => func(listen)
 }
 
-const quitApp = (app) => app.quit();
+const quitApp = (app) => {
+    app.quit()
+}

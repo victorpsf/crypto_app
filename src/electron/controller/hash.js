@@ -1,5 +1,8 @@
-import { ConfigProperties } from './config'
+import ConfigProperties from './config_properties'
+import Fields from './fields/index'
 import HashLib from '../lib/crypto/hash'
+
+const { Builder, TextField } = Fields()
 
 class Hash extends ConfigProperties {
   constructor(args) {
@@ -52,6 +55,13 @@ class Hash extends ConfigProperties {
     return date.getTime()
   }
 
+  fields() {
+    return [
+      TextField.make('Informação', 'tag').type('text').maxLength(1000),
+      TextField.make('Valor', 'value').type('password').maxLength(1000)
+    ]
+  }
+
   async get() {
     let files = this.storage.readDir(this.hashPath)
       .map((fileName) => {
@@ -67,10 +77,7 @@ class Hash extends ConfigProperties {
       data: {
         keys: this.keys,
         values: this.getValuesHash(files),
-        fields: [
-          { name: 'text-field', field: 'tag', label: 'Informação', value: null, shared: { type: 'text', maxLength: 1000 } },
-          { name: 'text-field', field: 'value', label: 'Valor', value: null, shared: { type: 'password', maxLength: 1000 } }
-        ]
+        fields: await Builder.build(this.fields(), {})
       }
     })
   }

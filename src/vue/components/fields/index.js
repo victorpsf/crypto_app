@@ -4,6 +4,7 @@ import DateField         from './Date/date.vue'
 import FileField         from './File/file.vue'
 import TimeField         from './Time/time.vue'
 import SelectField       from './select/select.vue'
+import DependecyField    from './Dependecy/dependecy'
 
 export default [
   { name: 'text-field',          el: TextField },
@@ -11,5 +12,6 @@ export default [
   { name: 'file-field',          el: FileField },
   { name: 'date-field',          el: DateField },
   { name: 'time-field',          el: TimeField },
-  { name: 'select-field',        el: SelectField }
+  { name: 'select-field',        el: SelectField },
+  { name: 'dependecy-field',     el: DependecyField }
 ]

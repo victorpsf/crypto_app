@@ -1,22 +1,18 @@
 export default {
   created() {
-    let rules = [
-      { func: 'load', call: 'load' }
-    ]
+    let rules = [{ func: 'load', call: 'load' }]
 
-    this.init(rules)
+    this.__init__(rules)
   },
 
   mounted() {
-    let rules = [
-      { func: 'build', call: 'build' }
-    ]
+    let rules = [{ func: 'build', call: 'build' }]
 
-    this.init(rules)
+    this.__init__(rules)
   },
 
   methods: {
-    init(rules) {
+    __init__(rules) {
       for(let rule of rules) {
         if (typeof this[rule.func] !== 'function') continue
         if (typeof this[rule.call] !== 'function') continue
