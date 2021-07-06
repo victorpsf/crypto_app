@@ -1,8 +1,8 @@
 import Storage from '../lib/storage'
 
-import ConfigFunctions from './config'
-import KeyFunctions from './key'
-import HashFunctions from './hash'
+import ConfigFunctions from '../controller/config'
+import KeyFunctions from '../controller/key'
+import HashFunctions from '../controller/hash'
 
 const storage = Storage.load();
 
@@ -25,7 +25,6 @@ export default function handler(args) {
         response
       })
     } catch (error) {
-      console.log('error: ', error)
       return reject({
         original: args,
         response: { status: 'error', message: error, result: null }
